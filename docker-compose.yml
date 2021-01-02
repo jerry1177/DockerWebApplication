@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  dockerwebserver:
+    image: ${DOCKER_REGISTRY-}dockerwebserver
+    build:
+      context: ./DockerWebServer
+      dockerfile: Dockerfile
+
+  webservice1:
+    image: ${DOCKER_REGISTRY-}webservice1
+    build:
+      context: ./WebService1
+      dockerfile: Dockerfile
+
+
+  webservice2:
+    image: ${DOCKER_REGISTRY-}webservice2
+    build:
+      context: ./WebService2
+      dockerfile: Dockerfile
+
