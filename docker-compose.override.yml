@@ -5,12 +5,16 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
+      - API_URL=webservice1:80
     ports:
       - "3001:80"
       - "3000:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+    - my-network
+
   webservice1:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -19,10 +23,17 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+    - my-network
+
 
   webservice2:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "3003:80"
-
+    networks:
+    - my-network
+networks:
+  my-network:
+    external: true

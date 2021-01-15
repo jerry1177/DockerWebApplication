@@ -36,6 +36,7 @@ namespace WebService2
             }
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 

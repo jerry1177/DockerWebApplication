@@ -1,0 +1,18 @@
+﻿@using DockerWebServer.Models
+@model TestViewModel 
+<span class="h1">This is a test view</span>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Test" method="post">
+    <div class="form-group">
+        <label asp-for="@Model.TestName" class="control-label"></label>
+        <input asp-for="@Model.TestName" class="form-control" />
+        <span asp-validation-for="@Model.TestName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.TestStreet" class="control-label"></label>
+        <input asp-for="@Model.TestStreet" class="form-control" />
+        <span asp-validation-for="@Model.TestStreet" class="text-danger"></span>
+    </div>
+    <input type="submit" value="submit"/>
+</form>
