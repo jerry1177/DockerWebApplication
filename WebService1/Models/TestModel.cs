@@ -9,6 +9,7 @@ namespace WebService1.Models
     public class TestModel
     {
         [Required] // make sure this field is not null attribute
+        [StringLength(20)]
         public string TestName { get; set; }
 
         [Required]
