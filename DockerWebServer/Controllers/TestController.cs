@@ -8,13 +8,19 @@ using System.Net;
 using System.Text;
 using System.Diagnostics;
 using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace DockerWebServer.Controllers
 {
     public class TestController : Controller
     {
+        private IConfiguration configuration = null;
+        public TestController(IConfiguration config) {
+            configuration = config;
+        }
         public IActionResult Index()
         {
+            Debug.WriteLine("\n\n\n\n" + configuration["Movies:ServiceApiKey"] + "\n\n\n\n");
             return View();
         }
         public class CustomContent : HttpContent
@@ -31,9 +37,10 @@ namespace DockerWebServer.Controllers
         };
 
         [HttpPost] // determine method type of end point attribute
-        [ValidateAntiForgeryToken] // check to make sure Model is valid attribute
+        //[ValidateAntiForgeryToken] // check to make sure Model is valid attribute
         [Route("Test/Test")] // determine route of endpoint attribute
-        public async Task<IActionResult> TestForm(TestViewModel test) {
+        public async Task<IActionResult> TestForm([FromBody] TestViewModel test) {
+            Debug.WriteLine(JsonSerializer.Serialize(test));
             if (ModelState.IsValid) { // check to make sure client sent proper information based off of the attributes added to TestViewModel
 
                 Debug.WriteLine(JsonSerializer.Serialize(test)); // turn cSharp object into JSON

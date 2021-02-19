@@ -52,7 +52,7 @@ namespace WebService1
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
             app.UseHttpsRedirection();
-            app.UseCors();
+            //app.UseCors();
             
             app.UseRouting();
 

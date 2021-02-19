@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +14,7 @@ namespace DockerWebServer
 {
     public class Startup
     {
+        private string movie_api = null;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,6 +31,7 @@ namespace DockerWebServer
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Debug.WriteLine("\n\n\n\n" + Configuration["Movies:ServiceApiKey"] + "\n\n\n\n");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

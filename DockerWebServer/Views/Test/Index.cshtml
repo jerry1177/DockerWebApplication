@@ -3,7 +3,8 @@
 <span class="h1">This is a test view</span>
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<form asp-action="Test" method="post">
+
+<form asp-action="Test" method="post"  onsubmit="bClicked(event)"> <!--look at onsubmit and how i implemented it. onclick can work for button without form-->
     <div class="form-group">
         <label asp-for="@Model.TestName" class="control-label"></label>
         <input asp-for="@Model.TestName" class="form-control" />
